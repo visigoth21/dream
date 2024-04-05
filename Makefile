@@ -1,5 +1,6 @@
 run: build
 	@./bin/dream
+
 install:
 	@go install github.com/a-h/templ/cmd/templ@latest
 	@go get ./...
@@ -15,9 +16,10 @@ css:
 templ:
 	@templ generate --watch --proxy=http://localhost:8000
 
-build:
+build: ## Build the project
+	@npm run build
 	@templ generate view
-	@go build -tags dev -o bin/dream main.go  
+	@go build -tags dev -o bin/dream main.go 
 
 up: ## Database migration up
 	@go run cmd/migrate/main.go up
