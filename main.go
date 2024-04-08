@@ -21,6 +21,7 @@ func main() {
 	}
 
 	router := chi.NewMux()
+	router.Use(handler.WithUser)
 
 	//router.Get("/favicon.ico", handler.MakeHandler(handler.HandleFavicon))
 	router.Handle("/*", http.StripPrefix("/", http.FileServer(http.FS(FS))))
